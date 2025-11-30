@@ -40,6 +40,12 @@ class UserProfile(AbstractUser):
         (NON_TEACHING_ADMIN, 'Non-Teaching Administrator'),
     ]
     
+    # BLOOD GROUP CHOICES
+    BLOOD_GROUP_CHOICES = [
+        ('A+', 'A+'), ('A-', 'A-'), ('B+', 'B+'), ('B-', 'B-'),
+        ('O+', 'O+'), ('O-', 'O-'), ('AB+', 'AB+'), ('AB-', 'AB-'),
+    ]
+    
     # Custom fields for college staff
     pen_number = models.CharField(
         max_length=20, 
@@ -67,7 +73,19 @@ class UserProfile(AbstractUser):
         default=TEACHER
     )
     phone_number = models.CharField(max_length=15, blank=True)
-    date_joined = models.DateField(auto_now_add=True)
+    date_of_joining = models.DateField(null=True, blank=True, verbose_name='Date of Joining')
+    qualification = models.CharField(max_length=100, blank=True, verbose_name='Highest Qualification')
+    blood_group = models.CharField(
+        max_length=5, 
+        blank=True, 
+        choices=BLOOD_GROUP_CHOICES,
+        verbose_name='Blood Group'
+    )
+    emergency_contact = models.CharField(
+        max_length=15, 
+        blank=True, 
+        verbose_name='Emergency Contact Number'
+    )
     
     class Meta:
         verbose_name = 'Staff Profile'
@@ -79,6 +97,9 @@ class UserProfile(AbstractUser):
     
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}".strip()
+
+# Keep your existing LeaveApplication and LeaveBalance models...
+# [Include your existing LeaveApplication and LeaveBalance models here]
 
 class LeaveApplication(models.Model):
     """Leave Application Model"""
