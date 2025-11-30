@@ -1,0 +1,44 @@
+# Virtual Environment
+venv/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+
+# Database
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Miniconda/Conda
+.miniconda/
+.conda/
